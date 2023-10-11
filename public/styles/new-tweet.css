@@ -6,6 +6,12 @@
   align-self: center;
 }
 
+.error {
+  color: rgb(255, 21, 21);
+  font-weight: bold;
+  padding: 5px;
+}
+
 #tweet-text {
   width: 100%;
   font-size: 1em;
@@ -17,7 +23,6 @@
   resize: none;
   overflow-wrap: break-word;
   border-bottom: 2px solid #555149;
-  font-family: 'Source Sans 3', 'sans-serif';
 }
 
 #tweet-form {

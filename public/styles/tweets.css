@@ -76,6 +76,6 @@
   color: orange;
 }
 
-.tweet-container:hover {
+.tweet:hover {
   box-shadow: 6px 6px #C9CAE2;
 }

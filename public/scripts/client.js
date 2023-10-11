@@ -4,6 +4,12 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
 const createTweetElement = function (tweetObject) {
   const date = new Date(tweetObject.created_at);
   const formattedDate = date.toISOString();
@@ -14,7 +20,7 @@ const createTweetElement = function (tweetObject) {
   <span class="display-name">${tweetObject.user.name}</span>
   <span class="handle">${tweetObject.user.handle}</span>
   </header>
-  <p class="tweet-content">${tweetObject.content.text}</p>
+  <p class="tweet-content">${escape(tweetObject.content.text)}</p>
   <hr class="footer-separator">
   <div class="tweet-footer">
   <span class="date">${timeAgo}</span>
@@ -39,7 +45,7 @@ const renderTweets = function (tweetsArray) {
   const $tweetsContainer = $(`#tweets-container`);
   tweetsArray.forEach((tweet) => {
     const $tweet = createTweetElement(tweet);
-    $tweetsContainer.append($tweet);
+    $tweetsContainer.prepend($tweet);
   });
 };
 
@@ -61,20 +67,25 @@ $(document).ready(function () {
     const tweetContent = $("#tweet-text").val();
 
     if (!tweetContent) {
-      alert("Error: Tweet is empty!");
+      $("#tweet-empty").removeClass("hidden");
       return;
+    } else {
+      $("#tweet-empty").addClass("hidden");
     }
 
     if (tweetContent.length > 140) {
-      alert(
-        "Error: Tweet is too long! Maximum length of a tweet can not exceed 140 characters."
-      );
+      $("#tweet-too-long").removeClass("hidden");
       return;
+    } else {
+      $("#tweet-too-long").addClass("hidden");
     }
 
     const formData = $(this).serialize();
     $.post("/tweets", formData)
       .done(function () {
+        $("#tweet-form")[0].reset();
+        $("#tweets-container").empty();
+        loadTweets();
         console.log("Tweet Submitted Successfully!");
       })
       .fail(function (error) {

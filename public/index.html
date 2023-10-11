@@ -53,6 +53,8 @@
 
       <section class="new-tweet">
         <h2>Compose Tweet</h2>
+        <div class="error hidden" id="tweet-too-long">Error! Your tweet can not exceed 140 characters in length!</div>
+        <div class="error hidden" id="tweet-empty">Error! Your tweet can not be empty!</div>
         <form action="/tweets/" method="POST" id="tweet-form">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div class="submit-counter">
