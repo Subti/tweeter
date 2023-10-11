@@ -58,6 +58,20 @@ $("#tweet-form").on("submit", function (event) {
 $(document).ready(function () {
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
+    const tweetContent = $("#tweet-text").val();
+
+    if (!tweetContent) {
+      alert("Error: Tweet is empty!");
+      return;
+    }
+
+    if (tweetContent.length > 140) {
+      alert(
+        "Error: Tweet is too long! Maximum length of a tweet can not exceed 140 characters."
+      );
+      return;
+    }
+
     const formData = $(this).serialize();
     $.post("/tweets", formData)
       .done(function () {
