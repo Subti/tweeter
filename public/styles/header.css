@@ -1,0 +1,10 @@
+.profile-header {
+  display: flex;
+  height: 520px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: orange;
+  background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+ }

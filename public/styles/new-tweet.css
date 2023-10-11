@@ -1,0 +1,45 @@
+.new-tweet {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+}
+
+#tweet-text {
+  width: 100%;
+  font-size: 1em;
+  height: 1.5em;
+  border: none;
+  outline: none;
+  background-color: #f4f1ec;
+  color: #333;
+  resize: none;
+  overflow-wrap: break-word;
+  border-bottom: 2px solid #555149;
+  font-family: 'Source Sans 3', 'sans-serif';
+}
+
+#tweet-form {
+  width: 40%;
+}
+
+.submit-counter {
+  display:flex;
+}
+
+.tweet-submit {
+  font-family: 'Bungee', 'sans-serif';
+  color: white;
+  background-color: #3E54A2;
+  border: 0;
+}
+
+.counter {
+  margin-left: auto;
+  font-family: 'Bungee', 'sans-serif';
+}
+
+.exceeded-limit {
+  color: red;
+}
