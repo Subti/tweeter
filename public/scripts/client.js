@@ -66,6 +66,40 @@ const renderTweets = function (tweetsArray) {
   });
 };
 
+$("#tweet-form").on("submit", function (event) {
+  event.preventDefault();
+  const formData = $(this).serialize();
+  $.post("/tweets", formData)
+    .done(function (data) {
+      console.log("Tweet Submitted Successfully!", data);
+    })
+    .fail(function (error) {
+      console.error("Error submitting tweet:", error);
+    });
+});
+
 $(document).ready(function () {
-  renderTweets(data);
+  $("#tweet-form").on("submit", function (event) {
+    event.preventDefault();
+    const formData = $(this).serialize();
+    $.post("/tweets", formData)
+      .done(function () {
+        console.log("Tweet Submitted Successfully!");
+      })
+      .fail(function (error) {
+        console.error("Error submitting tweet:", error);
+      });
+  });
+
+  const loadTweets = function () {
+    $.get("/tweets")
+      .done(function (data) {
+        renderTweets(data);
+      })
+      .fail(function (error) {
+        alert("Error loading tweets:", error);
+      });
+  };
+
+  loadTweets();
 });
