@@ -5,6 +5,9 @@
  */
 
 const createTweetElement = function (tweetObject) {
+  const date = new Date(tweetObject.created_at);
+  const formattedDate = date.toISOString();
+  const timeAgo = timeago.format(formattedDate);
   let $tweet = $(`<article class="tweet">
   <header class="tweet-header">
   <img src=${tweetObject.user.avatars} class="mini-display-image">
@@ -14,7 +17,7 @@ const createTweetElement = function (tweetObject) {
   <p class="tweet-content">${tweetObject.content.text}</p>
   <hr class="footer-separator">
   <div class="tweet-footer">
-  <span class="date">${tweetObject.created_at}</span>
+  <span class="date">${timeAgo}</span>
   <div class="tweet-actions">
   <span class="flag">
   <i class="fas fa-flag"></i>
