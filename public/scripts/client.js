@@ -4,12 +4,14 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
+// Only purpose this serves is to stop cross site scripting.
 const escape = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
+// Contains layout originally used for static example element, simply slapped into a function with template literals for variables.
 const createTweetElement = function (tweetObject) {
   const date = new Date(tweetObject.created_at);
   const formattedDate = date.toISOString();
@@ -41,6 +43,7 @@ const createTweetElement = function (tweetObject) {
   return $tweet;
 };
 
+// Prepend tweets for reverse-chronological, append for chronological.
 const renderTweets = function (tweetsArray) {
   const $tweetsContainer = $(`#tweets-container`);
   tweetsArray.forEach((tweet) => {
@@ -49,19 +52,15 @@ const renderTweets = function (tweetsArray) {
   });
 };
 
-$("#tweet-form").on("submit", function (event) {
-  event.preventDefault();
-  const formData = $(this).serialize();
-  $.post("/tweets", formData)
-    .done(function (data) {
-      console.log("Tweet Submitted Successfully!", data);
-    })
-    .fail(function (error) {
-      console.error("Error submitting tweet:", error);
-    });
-});
-
 $(document).ready(function () {
+  /*
+   *
+   *
+   * Nav bar Compose + Secondary Toggle button handlers
+   *
+   *
+   */
+
   $(".new-tweet").hide();
 
   $(".new-tweet-nav").on("click", function () {
@@ -85,6 +84,15 @@ $(document).ready(function () {
     $(".new-tweet").slideDown("slow");
   });
 
+  /*
+   *
+   *
+   * END OF Nav bar Compose + Secondary Toggle button handlers
+   *
+   *
+   */
+
+  // Submit handler that also deals with the error messages that pop up if conditions are not met.
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
     const tweetContent = $("#tweet-text").val();
@@ -103,14 +111,14 @@ $(document).ready(function () {
       $("#tweet-too-long").addClass("hidden");
     }
 
-    $(this).find(".submit-counter").find(".counter").text(140);
+    $(this).find(".submit-counter").find(".counter").text(140); // If no errors, the form will submit and reset the counter to 140. (Could probably find a better position for this line)
 
     const formData = $(this).serialize();
     $.post("/tweets", formData)
       .done(function () {
-        $("#tweet-form")[0].reset();
-        $("#tweets-container").empty();
-        loadTweets();
+        $("#tweet-form")[0].reset(); // This simply empties the form once you submit a tweet.
+        $("#tweets-container").empty(); // This (in combination with the next line) serves to load the tweets again as you submit without refreshing the page.
+        loadTweets(); // Alas, the two lines are clunky and the better way to do this is to simply create the element here and prepend it, but the server's code does not allow it, so this execution is the way.
         console.log("Tweet Submitted Successfully!");
       })
       .fail(function (error) {
