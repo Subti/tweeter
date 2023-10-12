@@ -62,6 +62,29 @@ $("#tweet-form").on("submit", function (event) {
 });
 
 $(document).ready(function () {
+  $(".new-tweet").hide();
+
+  $(".new-tweet-nav").on("click", function () {
+    $(".new-tweet").slideToggle("slow");
+  });
+
+  $("#scroll-to-top").hide();
+
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 100) {
+      $(".new-tweet-nav").hide();
+      $("#scroll-to-top").show();
+    } else {
+      $(".new-tweet-nav").show();
+      $("#scroll-to-top").hide();
+    }
+  });
+
+  $("#scroll-to-top").on("click", function () {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $(".new-tweet").slideDown("slow");
+  });
+
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
     const tweetContent = $("#tweet-text").val();
@@ -79,6 +102,8 @@ $(document).ready(function () {
     } else {
       $("#tweet-too-long").addClass("hidden");
     }
+
+    $(this).find(".submit-counter").find(".counter").text(140);
 
     const formData = $(this).serialize();
     $.post("/tweets", formData)

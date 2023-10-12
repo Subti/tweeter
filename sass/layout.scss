@@ -6,7 +6,6 @@
 html {
   box-sizing: border-box;
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -14,6 +13,7 @@ html {
 /*
  * Global layout stuff
  */
+
 body {
   color: #545149;
   background-color: #f4f1ec;
@@ -23,43 +23,44 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
-body {
+
+ body {
   display: flex;
   flex-direction: column;
-  font-family: "Source Sans 3", "sans-serif";
-}
+  font-family: 'Source Sans 3', 'sans-serif';
+ }
 
-main {
+ main {
   width: 100%;
   align-self: center;
   justify-content: center;
   background-color: #f4f1ec;
-}
+ }
 
-.hidden {
+ .hidden {
   display: none;
-}
+ }
 
-.container {
+ .container {
   display: flex;
   flex-direction: column;
-}
+ }
 
-.spacer {
+ .spacer {
   display: none;
-}
+ }
 
-#scroll-to-top {
+ #scroll-to-top {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: tomato;
-  color: white;
+  color:white;
   border-radius: 50%;
   width: 2.5rem;
   height: 2.5rem;
   position: fixed;
-  bottom: 0.6rem;
+  bottom: 0.6rem; 
   right: 0.6rem;
   z-index: 99;
 }

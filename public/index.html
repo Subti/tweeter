@@ -13,11 +13,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
     <link rel="stylesheet" href="/styles/header.css" type="text/css" />
     <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/media.css" type="text/css" />
 
 
     <!-- External JS -->
@@ -34,26 +35,25 @@
     <nav>
       <span class="logo">tweeter</span>
       <div class="new-tweet-nav">
-        <b>Write</b> a new tweet
+        <span><b>Tweet</b></span>
         <i class="fas fa-angle-double-down"></i>
       </div>
     </nav>
+
+    <div class="spacer"></div>
+
+    <!-- Page-specific (main) content here -->
+    <main class="container">
 
     <header class="profile-header">
       <div class="user-display-image">
           <img src="/images/profile-hex.png"> 
       </div>
-      <br>
-      <div class="user-display-name">
-          <h2>Your Name</h2>
-      </div>
-  </header>
+        <span class="user-display-name"><b>Penny</b> Stardew</span>
+    </header>
 
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-
+    <div class="tweet-handler">
       <section class="new-tweet">
-        <h2>Compose Tweet</h2>
         <div class="error hidden" id="tweet-too-long">Error! Your tweet can not exceed 140 characters in length!</div>
         <div class="error hidden" id="tweet-empty">Error! Your tweet can not be empty!</div>
         <form action="/tweets/" method="POST" id="tweet-form">
@@ -67,7 +67,9 @@
 
       <section class="all-tweets" id="tweets-container">
       </section>
-      
+
+      <div id="scroll-to-top"><i class="fas fa-angle-double-up"></i></div>
+    </div>
     </main>
   </body>
 </html>
