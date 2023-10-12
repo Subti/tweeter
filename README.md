@@ -9,7 +9,17 @@ Really though, this is just a simple project to tinker with HTML, CSS, JS, jQuer
 This project was completed for my bootcamp studies at Lighthouse Labs, and the majority of the direction for the project is also sourced from Lighthouse Labs.
 
 ## Screenshots
+<h2 align="center">Desktop View</p>
 
+!["Desktop View of Tweeter"](https://github.com/Subti/tweeter/blob/master/docs/desktop-view.png?raw=true)
+
+<p align="center">Tablet View</p>
+
+!["Tablet View of Tweeter"](https://github.com/Subti/tweeter/blob/master/docs/tablet-view.png?raw=true)
+
+<p align="center">Mobile View</p>
+
+!["Mobile View of Tweeter"](https://github.com/Subti/tweeter/blob/master/docs/mobile-view.png?raw=true)
 
 ## Getting Started
 
